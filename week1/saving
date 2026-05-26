@@ -1,0 +1,4 @@
+#!/bin/bash
+cp -r scripts backup/scriptbackup
+
+cp -r notes backup/notesbackup
