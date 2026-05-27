@@ -1,2 +1,6 @@
 #ignore sensitive files
 sensitive.txt
+
+#ignore rsa keys
+id_rsa
+id_rsa.pub
