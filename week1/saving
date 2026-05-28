@@ -1,4 +1,5 @@
 #!/bin/bash
-cp -r scripts backup/scriptbackup
+cp -r scripts/* backup/scriptbackup
 
-cp -r notes backup/notesbackup
+cp -r notes/* backup/notesbackup
+echo "Backup saved successfully!"
