@@ -14,3 +14,5 @@ jobs:
         run: ls -la
       - name: Run shell syntax check  
         run: bash -n week1/scripts/system_info.sh
+      - name: Check edit
+        run: echo "your edit passed through $(user)!!"
