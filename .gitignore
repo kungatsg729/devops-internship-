@@ -1,2 +1,14 @@
 #ignore sensitive files
 sensitive.txt
+
+#ignore sensitive keys
+id_rsa
+id_rsa.pub
+SSH
+gh
+gh.pub
+codavatar
+codavatar.pub
+codavatarkey
+codavatarkey.pub
+codavatarkey.pub.pub
