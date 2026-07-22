@@ -23,14 +23,14 @@
 
 In this task, we created a Linux practice workspace for our devops-internship. We created a file system with `devops-internship/week1/{scripts, logs, backup, notes}`. Then we added some intro text into the notes by creating a new `.txt` file within it. Similarly we also created a `.sh` file in scripts that displayed user info, date, current directory and data usage. The screenshot for this scripting is provided below:
 
-![Figure 1](screenshots/systeminfoscript.png)
+![Figure 1](screenshots/week1-4/systeminfoscript.png)
 *Figure 1 — system_info.sh script*
 
 We then used `chmod +x` to execute the file (although bash could directly be used, we wanted to practice file permissions), and used the `tee` command to store the data directly into logs. Moving on, we were able to use the `grep` command to search for specific data within the logs such as `user` or `data usage`.
 
 Additionally, we also created a new file that allowed us to directly create a backup of the scripts folder and the notes folder. We did this by creating an executable file that recursively copied the contents of these folders into two separate folders within backup. We tested it and the backup script ran perfectly and did not mess with the log since we had not intended for there to be a `tee` command. The screenshot is provided below:
 
-![Figure 2](screenshots/savingscript.png)
+![Figure 2](screenshots/week1-4/savingscript.png)
 *Figure 2 — script for saving*
 
 ---
@@ -55,7 +55,7 @@ Additionally, we learned how to create and connect to a repository in GitHub to 
 
 After linking our week1 devops-internship directory to GitHub, we pushed all of the code using `git push -u origin main`. In practice, it is always advised to pull before pushing to prevent unwanted errors but we ignored this since our repository was empty. Given below is the screenshot of our pushed repository:
 
-![Figure 3](screenshots/pushedweek1.png)
+![Figure 3](screenshots/week1-4/pushedweek1.png)
 *Figure 3 — repository pushed into GitHub*
 
 In Figure 3, we can also see a `.gitignore` file stored. A `.gitignore` file is an invisible file that contains files that you do NOT want to push to GitHub. This includes sensitive files like SSH keys, passwords, secrets, etc.
@@ -66,7 +66,7 @@ For the next task we created a branch in our repository. We were originally in t
 
 We created a branch using `git branch week2-git-cicd` and used `git checkout week2-git-cicd` to move into it. We can see the branches using the `git branch` command like shown below:
 
-![Figure 4](screenshots/branches.png)
+![Figure 4](screenshots/week1-4/branches.png)
 *Figure 4 — git branches*
 
 After creating the branch and making some changes, we checked the main branch and confirmed the files there stayed exactly the same. Then we committed the changes and pushed to GitHub, created a pull request, and merged the branches into main using `git merge`.
@@ -77,25 +77,25 @@ CI/CD is a core aspect of DevOps and cloud engineering. A CI/CD pipeline is a re
 
 To create one, we first created a CI/CD file under `.github/workflows`. This is vital while creating any CI/CD file. We wrote it using YAML, a data serialisation language. The file we created is shown below:
 
-![Figure 5](screenshots/CIpipeline.png)
+![Figure 5](screenshots/week1-4/CIpipeline.png)
 *Figure 5 — CI pipeline*
 
 This file created a condition testing code validity that ran when one of our branches pushed or our main branch received a pull request. We tested this by pushing a branch with intentional errors:
 
-![Figure 6](screenshots/errorforCI.png)
+![Figure 6](screenshots/week1-4/errorforCI.png)
 *Figure 6 — error in CI*
 
-![Figure 7](screenshots/errordetails.png)
+![Figure 7](screenshots/week1-4/errordetails.png)
 *Figure 7 — error details*
 
 GitHub Actions logged the user who made the push and rejected it due to a YAML syntax error on line 2. We also received an email regarding the rejection. This showcases the obvious benefits of a CI pipeline — clear accountability, error description and error notification making the developer's job easier.
 
 We fixed the error and pushed again:
 
-![Figure 8](screenshots/fixedpush.png)
+![Figure 8](screenshots/week1-4/fixedpush.png)
 *Figure 8 — fixed push*
 
-![Figure 9](screenshots/fixederrorinfo.png)
+![Figure 9](screenshots/week1-4/fixederrorinfo.png)
 *Figure 9 — fixed push info*
 
 > **Conclusion:** We learned how to confidently operate using git and GitHub while also learning how to build a basic YAML file and diving into the fundamentals of CI/CD. We will use this knowledge throughout our internship and future endeavors.
@@ -110,50 +110,50 @@ In this week, we learned how to create a simple containerized application using 
 
 The first thing we did was create a simple Python Flask application to run on localhost:
 
-![Figure 10](screenshots/python_file.png)
+![Figure 10](screenshots/week1-4/python_file.png)
 *Figure 10 — Python Flask application*
 
 We then created a Dockerfile to containerize and run the application. We installed `python3` and `pip` for Flask within the file and created a command to be executed during container creation. We also copied our Python file into `/app`.
 
-![Figure 11](screenshots/Dockerfile.png)
+![Figure 11](screenshots/week1-4/Dockerfile.png)
 *Figure 11 — Dockerfile*
 
 We then built the image and ran the container:
 
-![Figure 12](screenshots/buildimage.png)
+![Figure 12](screenshots/week1-4/buildimage.png)
 *Figure 12 — building the image*
 
-![Figure 13](screenshots/runcontainer.png)
+![Figure 13](screenshots/week1-4/runcontainer.png)
 *Figure 13 — running the container*
 
 We checked running containers using `docker ps`, viewed logs using `docker logs`, and stopped and removed the container using `docker stop` and `docker rm` respectively:
 
-![Figure 14](screenshots/dockerps.png)
+![Figure 14](screenshots/week1-4/dockerps.png)
 *Figure 14 — container status*
 
-![Figure 15](screenshots/dockerlog.png)
+![Figure 15](screenshots/week1-4/dockerlog.png)
 *Figure 15 — container logs*
 
-![Figure 16](screenshots/dockerstop.png)
+![Figure 16](screenshots/week1-4/dockerstop.png)
 *Figure 16 — stopping the container*
 
-![Figure 17](screenshots/dockerrm.png)
+![Figure 17](screenshots/week1-4/dockerrm.png)
 *Figure 17 — removing the container*
 
 ### Docker Compose
 
 Moving on, we created a `docker-compose.yml` file using the same Dockerfile for simplicity:
 
-![Figure 18](screenshots/dockercompose.png)
+![Figure 18](screenshots/week1-4/dockercompose.png)
 *Figure 18 — docker-compose.yml*
 
-![Figure 19](screenshots/dockercomposeup.png)
+![Figure 19](screenshots/week1-4/dockercomposeup.png)
 *Figure 19 — docker compose up*
 
-![Figure 20](screenshots/dockercomposeps.png)
+![Figure 20](screenshots/week1-4/dockercomposeps.png)
 *Figure 20 — compose container status*
 
-![Figure 21](screenshots/dockercomposedown.png)
+![Figure 21](screenshots/week1-4/dockercomposedown.png)
 *Figure 21 — docker compose down*
 
 > **Conclusion:** In this week, we thoroughly learned how to use Docker, its purposes, importance, the syntax of Dockerfiles and Compose files, the concept of volumes, port-mapping and more. We will be using the knowledge from this week throughout the coming weeks.
@@ -166,82 +166,82 @@ Moving on, we created a `docker-compose.yml` file using the same Dockerfile for 
 
 In this week, we combined what we had learned in earlier weeks to run a persistent volume database fully inside a container. We did this by creating a Docker Compose file as shown below:
 
-![Figure 22](screenshots/dbcompose.png)
+![Figure 22](screenshots/week1-4/dbcompose.png)
 *Figure 22 — database docker-compose.yml*
 
 We selected the appropriate images, set the environment variables, exposed their respective ports and mapped the volume to physical local storage for persistence. Mapping the volume is important especially in containerised databases since killing the container kills the data permanently without it.
 
 We ran the compose file using the `-f` flag since we already had a docker-compose file and didn't want them to clash:
 
-![Figure 23](screenshots/dbcomposeup.png)
+![Figure 23](screenshots/week1-4/dbcomposeup.png)
 *Figure 23 — running the database compose file*
 
 ### PostgreSQL CRUD Operations
 
 **Create (Table)**
 
-![Figure 24](screenshots/pstable.png)
+![Figure 24](screenshots/week1-4/pstable.png)
 *Figure 24 — creating a table*
 
 **Insert**
 
-![Figure 25](screenshots/psinsert.png)
+![Figure 25](screenshots/week1-4/psinsert.png)
 *Figure 25 — inserting data*
 
-![Figure 26](screenshots/psselect.png)
+![Figure 26](screenshots/week1-4/psselect.png)
 *Figure 26 — selecting data*
 
-![Figure 27](screenshots/psdbt.png)
+![Figure 27](screenshots/week1-4/psdbt.png)
 *Figure 27 — database table view*
 
 **Update**
 
-![Figure 28](screenshots/psupdate.png)
+![Figure 28](screenshots/week1-4/psupdate.png)
 *Figure 28 — update command*
 
-![Figure 29](screenshots/psupdata.png)
+![Figure 29](screenshots/week1-4/psupdata.png)
 *Figure 29 — updated data*
 
 **Delete**
 
-![Figure 30](screenshots/psdelete.png)
+![Figure 30](screenshots/week1-4/psdelete.png)
 *Figure 30 — delete command*
 
-![Figure 31](screenshots/psdeldata.png)
+![Figure 31](screenshots/week1-4/psdeldata.png)
 *Figure 31 — data after deletion*
 
 ### MongoDB CRUD Operations
 
 **Create**
 
-![Figure 32](screenshots/mcreate.png)
+![Figure 32](screenshots/week1-4/mcreate.png)
 *Figure 32 — creating a database*
 
-![Figure 33](screenshots/minsert.png)
+![Figure 33](screenshots/week1-4/minsert.png)
 *Figure 33 — inserting a document*
 
-![Figure 34](screenshots/minsertdata.png)
+![Figure 34](screenshots/week1-4/minsertdata.png)
 *Figure 34 — inserted data*
 
 **Update**
 
-![Figure 35](screenshots/mupdate.png)
+![Figure 35](screenshots/week1-4/mupdate.png)
 *Figure 35 — update command*
 
-![Figure 36](screenshots/mupdatedata.png)
+![Figure 36](screenshots/week1-4/mupdatedata.png)
 *Figure 36 — updated data*
 
 **Delete**
 
-![Figure 37](screenshots/mdelete.png)
+![Figure 37](screenshots/week1-4/mdelete.png)
 *Figure 37 — delete command*
 
-![Figure 38](screenshots/mdelete.png)
+![Figure 38](screenshots/week1-4/mdelete.png)
 *Figure 38 — data after deletion*
 
 After checking all these operations, we further checked our logs to exercise our understanding. We saw that our records were stored along the many lines as shown below:
 
-![Figure 39](screenshots/dclogs.png)
+![Figure 39](screenshots/week1-4/dclogs.png)
 *Figure 39 — container logs*
 
 ### SQL vs NoSQL
@@ -663,4 +663,3 @@ Moving on, with the extra time we have, we will be diving deeper into AWS, explo
 *DevOps Internship — 8 Weeks · Linux · Git · Docker · AWS · Kubernetes · Prometheus · Vault*
 
 </div>
-

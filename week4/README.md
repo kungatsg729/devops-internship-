@@ -1,67 +1,100 @@
-Week4:
-Interns must run PostgreSQL and MongoDB in containers, perform basic CRUD operations, create persistent volumes, inspect logs, and write connection details as environment variables. They should understand SQL vs NoSQL from operational and application perspectives.
+## Week 4 — PostgreSQL & MongoDB
 
-In this week, we combined what we had learned earlier weeks to run a persistent volume database fully inside a container. We did this by creating a docker-compose file as shown below:
+> **Task:** Run PostgreSQL and MongoDB in containers, perform basic CRUD operations, create persistent volumes, inspect logs, and write connection details as environment variables.
 
-![Figure 22](../screenshots/dbcompose.png)
+In this week, we combined what we had learned in earlier weeks to run a persistent volume database fully inside a container. We did this by creating a Docker Compose file as shown below:
 
-We selected the appropriate image, set the environment variables, exposed their respective ports and mapped the volume to physical local storage for persistence. Mapping the volume is important especially in containerized databases since killing the container kills the data permanently too without it. 
-We ran the compose file next using the following command:
-(note: we used -f (flag) because we already have a docker-compose file and we don’t want them to clash)
+![Figure 22](../screenshots/week1-4/dbcompose.png)
+*Figure 22 — database docker-compose.yml*
 
-![Figure 23](../screenshots/dbcomposeup.png)
+We selected the appropriate images, set the environment variables, exposed their respective ports and mapped the volume to physical local storage for persistence. Mapping the volume is important especially in containerised databases since killing the container kills the data permanently without it.
 
-After successfully running the containers, we checked the running status, container names and everything using docker ps. Then we went into both postgres and mongodb terminals to perform basic CRUD operations to test and further understand databases in containers.
-We noticed that the commands were slightly different in terminals but it was not as difficult as it looked once you got the hang of it.
-We first performed the operations on postgresql with the screenshots of commands provided below:
+We ran the compose file using the `-f` flag since we already had a docker-compose file and didn't want them to clash:
 
-Psql:
-Create (Table):
-  ![Figure 24](../screenshots/pstable.png)
-Insert:
-  ![Figure 25](../screenshots/psinsert.png)
-  ![Figure 26](../screenshots/psselect.png)
-  ![Figure 27](../screenshots/psdbt.png)
+![Figure 23](../screenshots/week1-4/dbcomposeup.png)
+*Figure 23 — running the database compose file*
 
-Update:
-  ![Figure 28](../screenshots/psupdate.png)
-  ![Figure 29](../screenshots/psupdata.png)
-Delete:
-  ![Figure 30](../screenshots/psdelete.png)
-  ![Figure 31](../screenshots/psdeldata.png)
+### PostgreSQL CRUD Operations
 
-Mongodb:
-Create:
-  Db:
-  ![Figure 32](../screenshots/mcreate.png)
-  Table:
-  ![Figure 33](../screenshots/minsert.png)
-  ![Figure 34](../screenshots/minsertdata.png)
-Update:
-  ![Figure 35](../screenshots/mupdate.png)
-  ![Figure 36](../screenshots/mupdatedata.png)
-Delete:
-  ![Figure 37](../screenshots/mdelete.png)
-  ![Figure 38](../screenshots/mdelete.png)
+**Create (Table)**
 
-After checking all these operations, we can safely say that we have thoroughly learned databases, containerization and databases in containers. We further checked our logs to exercise our understanding regarding the subject. We saw that our records were stored along the many lines of the given image:
+![Figure 24](../screenshots/week1-4/pstable.png)
+*Figure 24 — creating a table*
 
-![Figure 39](../screenshots/dclogs.png)
+**Insert**
 
+![Figure 25](../screenshots/week1-4/psinsert.png)
+*Figure 25 — inserting data*
 
-Differences between SQl and NoSQL:
-Basically SQL databases like PostgreSQL store data in tables with rows and columns, kind of like a spreadsheet. Everything has a strict structure and you have to define what columns exist before you can put data in. Its good when your data is predictable and you need relationships between tables like connecting a user to their orders.
-NoSQL databases like MongoDB are more flexible. Instead of tables you have collections and instead of rows you have documents which are basically JSON objects. You dont have to define a structure beforehand so if your data changes shape a lot it works better. The downside is theres no strict rules so you can accidentally store inconsistent data.
-For this week I ran both using Docker Compose and practiced basic CRUD operations on both. Honestly PostgreSQL felt more familiar because SQL syntax is straightforward. MongoDB took a bit to get used to especially the query syntax.
+![Figure 26](../screenshots/week1-4/psselect.png)
+*Figure 26 — selecting data*
 
-Why volumes are needed:
-When I first ran the database container without a volume I realized that every time I stopped and removed the container all my data was gone. Thats because containers dont store data permanently by default, everything inside them is temporary.
-Volumes fix this by storing the actual database files outside the container on the host machine. So even if the container crashes or gets deleted the data is still there. When you start a new container and attach the same volume it picks up right where it left off.
-Without volumes, databases in Docker are useless for anything real because we would lose everything on every restart.
+![Figure 27](../screenshots/week1-4/psdbt.png)
+*Figure 27 — database table view*
 
-Conclusion:
-This week we got PostgreSQL and MongoDB running together using Docker Compose. Getting the environment variable names right took some trial and error but once that was sorted both databases came up without issues.
-The biggest thing that clicked was volumes. We actually lost data after stopping a container which made it immediately obvious why volumes exist. Without them there is no point running a database in Docker.
-Comparing SQL and NoSQL hands on was more useful than just reading about it. PostgreSQL felt structured and predictable, MongoDB was flexible but less strict. Both have their place depending on what the data looks like.
-One thing that caught us off guard was Docker Compose prefixing container names with the folder name. Once we knew that running commands against the right container became straightforward.
+**Update**
 
+![Figure 28](../screenshots/week1-4/psupdate.png)
+*Figure 28 — update command*
+
+![Figure 29](../screenshots/week1-4/psupdata.png)
+*Figure 29 — updated data*
+
+**Delete**
+
+![Figure 30](../screenshots/week1-4/psdelete.png)
+*Figure 30 — delete command*
+
+![Figure 31](../screenshots/week1-4/psdeldata.png)
+*Figure 31 — data after deletion*
+
+### MongoDB CRUD Operations
+
+**Create**
+
+![Figure 32](../screenshots/week1-4/mcreate.png)
+*Figure 32 — creating a database*
+
+![Figure 33](../screenshots/week1-4/minsert.png)
+*Figure 33 — inserting a document*
+
+![Figure 34](../screenshots/week1-4/minsertdata.png)
+*Figure 34 — inserted data*
+
+**Update**
+
+![Figure 35](../screenshots/week1-4/mupdate.png)
+*Figure 35 — update command*
+
+![Figure 36](../screenshots/week1-4/mupdatedata.png)
+*Figure 36 — updated data*
+
+**Delete**
+
+![Figure 37](../screenshots/week1-4/mdelete.png)
+*Figure 37 — delete command*
+
+![Figure 38](../screenshots/week1-4/mdelete.png)
+*Figure 38 — data after deletion*
+
+After checking all these operations, we further checked our logs to exercise our understanding. We saw that our records were stored along the many lines as shown below:
+
+![Figure 39](../screenshots/week1-4/dclogs.png)
+*Figure 39 — container logs*
+
+### SQL vs NoSQL
+
+| | PostgreSQL (SQL) | MongoDB (NoSQL) |
+|---|---|---|
+| Structure | Tables with rows and columns | Collections with JSON documents |
+| Schema | Strict — defined before inserting | Flexible — no predefined structure |
+| Best for | Predictable, relational data | Variable or rapidly changing data |
+| Query style | SQL syntax | Document query syntax |
+
+### Why Volumes Are Needed
+
+When we first ran the database container without a volume, every time we stopped and removed the container all data was gone. Containers don't store data permanently by default — everything inside them is temporary.
+
+Volumes fix this by storing the actual database files outside the container on the host machine. So even if the container crashes or gets deleted, the data is still there. When a new container starts with the same volume attached, it picks up right where it left off.
+
+> **Conclusion:** This week we got PostgreSQL and MongoDB running together using Docker Compose. The biggest thing that clicked was volumes — we actually lost data after stopping a container which made it immediately obvious why volumes exist. Comparing SQL and NoSQL hands-on was more useful than just reading about it.
